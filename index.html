@@ -92,7 +92,7 @@
         /* 팝업 관련 스타일 */
         .popup {
             display: none;
-            position: relative;
+            position: fixed; /* fixed로 변경 */
             top: 0;
             left: 0;
             width: 100%;
@@ -224,8 +224,8 @@
                 <h2>비상 연락망</h2>
                 <ul>
                     <li>소방서: <a href="tel:119">119</a></li>
-                    <li>사내 경비실: <a href="tel:02-1234-5678">02-1234-5678</a></li>
-                    <li>안전팀 대표: <a href="tel:02-9876-5432">02-9876-5432</a></li>
+                    <li>원익 보안실: <a href="tel:031-230-4625">031-230-4625</a></li>
+                    <li>소방안전관리자: <a href="tel:010-9466-9082">010-9466-9082</a></li>
                 </ul>
             </div>
         </header>
@@ -233,16 +233,16 @@
         <main>
             <h2>역할별 임무</h2>
             <div class="mission-grid">
-                <div class="mission-card" ON-CLICK="openPopup('소화')">
+                <div class="mission-card" onclick="openPopup('소화')">
                     <h3>초기소화반</h3>
                 </div>
-                <div class="mission-card" ON-CLICK="openPopup('구조')">
+                <div class="mission-card" onclick="openPopup('구조')">
                     <h3>응급구조반</h3>
                 </div>
-                <div class="mission-card" ON-CLICK="openPopup('방호')">
+                <div class="mission-card" onclick="openPopup('방호')">
                     <h3>방호안전반</h3>
                 </div>
-                <div class="mission-card" ON-CLICK="openPopup('지휘')">
+                <div class="mission-card" onclick="openPopup('지휘')">
                     <h3>지휘통제팀</h3>
                 </div>
             </div>
@@ -251,25 +251,25 @@
 
             <h2>장비 활용 매뉴얼</h2>
             <div class="manual-grid">
-                <div class="manual-card" ON-CLICK="openPopup('소화기')">
+                <div class="manual-card" onclick="openPopup('소화기')">
                     <h3>소화기</h3>
                 </div>
-                <div class="manual-card" ON-CLICK="openPopup('소화전')">
+                <div class="manual-card" onclick="openPopup('소화전')">
                     <h3>소화전</h3>
                 </div>
-                <div class="manual-card" ON-CLICK="openPopup('공기호흡기')">
+                <div class="manual-card" onclick="openPopup('공기호흡기')">
                     <h3>공기호흡기</h3>
                 </div>
-                <div class="manual-card" ON-CLICK="openPopup('SVP')">
+                <div class="manual-card" onclick="openPopup('SVP')">
                     <h3>SVP</h3>
                 </div>
             </div>
         </main>
     </div>
 
-    <div id="mission-popup" class="popup" ON-CLICK="closePopup()">
-        <div class="popup-content" ON-CLICK="event.stopPropagation()">
-            <span class="popup-close" ON-CLICK="closePopup()">&times;</span>
+    <div id="mission-popup" class="popup" onclick="closePopup()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <span class="popup-close" onclick="closePopup()">&times;</span>
             <h3 id="popup-title"></h3>
             <div id="popup-content-body">
             </div>
