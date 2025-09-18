@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화재대응 조직 임무</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #d9534f;
+            font-size: 1.5em;
+        }
+
+        .flow-diagram img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            background-color: #fff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+            color: #337ab7;
+            font-size: 1.2em;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-info li {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .contact-info li span {
+            font-weight: normal;
+        }
+
+        .mission-grid, .manual-grid {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            margin-top: 20px;
+        }
+
+        .mission-card, .manual-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .mission-card:hover, .manual-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 팝업 관련 스타일 */
+        .popup {
+            display: none;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .popup-close:hover {
+            color: #333;
+        }
+        
+        /* 아코디언 스타일 */
+        .accordion-item {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background-color: #f7f7f7;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .accordion-header:hover {
+            background-color: #eee;
+        }
+
+        .accordion-content {
+            padding: 0 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #fff;
+        }
+
+        .accordion-content.active {
+            max-height: 500px; 
+            padding: 15px;
+        }
+        
+        .accordion-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .accordion-content li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .accordion-content li:before {
+            content: "•";
+            color: #d9534f;
+            position: absolute;
+            left: 0;
+        }
+
+        .manual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .manual-text {
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+        }
+        .manual-notes {
+            background-color: #f9f9f9;
+            border-left: 4px solid #f0ad4e;
+            padding: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .manual-notes p {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        .manual-notes strong {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>화재대응 조직 임무</h1>
+            <div class="flow-diagram">
+                <img src="https://via.placeholder.com/600x300?text=Fire+Response+Flow+Diagram" alt="화재대응 운영 계통도">
+            </div>
+
+            <div class="contact-info">
+                <h2>비상 연락망</h2>
+                <ul>
+                    <li>소방서: <a href="tel:119">119</a></li>
+                    <li>사내 경비실: <a href="tel:02-1234-5678">02-1234-5678</a></li>
+                    <li>안전팀 대표: <a href="tel:02-9876-5432">02-9876-5432</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main>
+            <h2>역할별 임무</h2>
+            <div class="mission-grid">
+                <div class="mission-card" ON-CLICK="openPopup('소화')">
+                    <h3>초기소화반</h3>
+                </div>
+                <div class="mission-card" ON-CLICK="openPopup('구조')">
+                    <h3>응급구조반</h3>
+                </div>
+                <div class="mission-card" ON-CLICK="openPopup('방호')">
+                    <h3>방호안전반</h3>
+                </div>
+                <div class="mission-card" ON-CLICK="openPopup('지휘')">
+                    <h3>지휘통제팀</h3>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>장비 활용 매뉴얼</h2>
+            <div class="manual-grid">
+                <div class="manual-card" ON-CLICK="openPopup('소화기')">
+                    <h3>소화기</h3>
+                </div>
+                <div class="manual-card" ON-CLICK="openPopup('소화전')">
+                    <h3>소화전</h3>
+                </div>
+                <div class="manual-card" ON-CLICK="openPopup('공기호흡기')">
+                    <h3>공기호흡기</h3>
+                </div>
+                <div class="manual-card" ON-CLICK="openPopup('SVP')">
+                    <h3>SVP</h3>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="mission-popup" class="popup" ON-CLICK="closePopup()">
+        <div class="popup-content" ON-CLICK="event.stopPropagation()">
+            <span class="popup-close" ON-CLICK="closePopup()">&times;</span>
+            <h3 id="popup-title"></h3>
+            <div id="popup-content-body">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const missionData = {
+            '소화': [
+                {
+                    title: '1. 출동 준비',
+                    content: `
+                        <ul>
+                            <li><strong>장비 위치 확인</strong>
+                                <ul>
+                                    <li>방화복: 1층 로비 (2 SET)</li>
+                                    <li>방열복: 지하 주차장 (2 SET)</li>
+                                    <li>공기호흡기: 1층 로비 (60분 2EA), 지하 주차장 (30분 2EA)</li>
+                                </ul>
+                            </li>
+                            <li>개인 보호구 준비</li>
+                            <li>현장 내 소화수단 사전 검토</li>
+                            <li>비상연락망 및 연락 수단 확인</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '2. 현장 도착',
+                    content: `
+                        <ul>
+                            <li>화재 정보 확인 (종류, 규모 등)</li>
+                            <li>화재 상황 전파 및 보고 / 긴급 신고</li>
+                            <li>전원 및 가스 차단 여부 확인 (관련 화재 시)</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '3. 초기 소화',
+                    content: `
+                        <ul>
+                            <li>소화기, 소화전 등 적정 소화 설비 사용</li>
+                            <li>스프링클러, 가스계소화설비 등 수동조작</li>
+                            <li>상황 악화 시 즉시 철수</li>
+                            <li>화재 확산 방지를 위해 방화문, 셔터 폐쇄</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '4. 후속 조치',
+                    content: `
+                        <ul>
+                            <li>진화 여부 확인 (재발화 등)</li>
+                            <li>지휘통제반에 상황 보고</li>
+                            <li>부상자 발생 시 응급구조반 요청</li>
+                            <li>장비 및 설비 정상화</li>
+                        </ul>
+                    `
+                }
+            ],
+            '구조': [
+                {
+                    title: '1. 출동 준비',
+                    content: `
+                        <ul>
+                            <li>개인 보호구 (방열복, 공기호흡기 등) 준비</li>
+                            <li>응급구조장비 (들것, 구급키트 등) 점검</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '2. 현장 도착',
+                    content: `
+                        <ul>
+                            <li>화재 현장 내 인명 피해 가능성 파악</li>
+                            <li>구조 대상자 탐색 및 위치 확인</li>
+                            <li>신속한 구조 활동을 위한 진입 경로 확보</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '3. 응급 구조',
+                    content: `
+                        <ul>
+                            <li>요구조자 신속 구조 및 안전한 장소로 이송</li>
+                            <li>부상자 발생 시 응급 처치 (지혈, 심폐소생술 등)</li>
+                            <li>이송할 병원 정보 확인 및 연락</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '4. 후속 조치',
+                    content: `
+                        <ul>
+                            <li>부상자 및 사망자 명단 작성 및 보고</li>
+                            <li>지휘통제반에 구조 및 응급상황 보고</li>
+                            <li>사용된 장비 정리 및 점검</li>
+                        </ul>
+                    `
+                }
+            ],
+            '방호': [
+                {
+                    title: '1. 출동 준비',
+                    content: `
+                        <ul>
+                            <li>무전기, 확성기 등 현장 통제 장비 준비</li>
+                            <li>경계선, 안전 띠 등 현장 구획 장비 준비</li>
+                            <li>공기호흡기 사용 가능 인원은 확인 및 점검</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '2. 현장 도착',
+                    content: `
+                        <ul>
+                            <li>화재 현장 주변 통제선 설정 및 경비</li>
+                            <li>소화반, 구조반이 안전하게 활동할 수 있도록 지원</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '3. 현장 통제',
+                    content: `
+                        <ul>
+                            <li>소방차량 진입로 확보 및 불필요한 인원 접근 차단</li>
+                            <li>2차 사고 방지 위해 가스, 전기 등 위험물 차단 조치</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '4. 후속 조치',
+                    content: `
+                        <ul>
+                            <li>화재 진압 및 구조 활동 종료 후 현장 정리 지원</li>
+                            <li>출입 통제 해제 및 통제 상황 보고</li>
+                        </ul>
+                    `
+                }
+            ],
+            '지휘': [
+                {
+                    title: '1. 현장 지휘소 설치',
+                    content: `
+                        <ul>
+                            <li>화재 현장 안전이 확보된 지역에 지휘본부 설치</li>
+                            <li>무전기, 통제 장비 등 지휘장비 준비</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '2. 상황 파악',
+                    content: `
+                        <ul>
+                            <li>화재 발생 상황, 규모, 인명 피해 등 종합적 정보 수집</li>
+                            <li>각 반의 활동 현황 실시간 모니터링 및 지시</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '3. 지휘 및 통제',
+                    content: `
+                        <ul>
+                            <li>각 반의 임무 배정 및 효율적인 작전 지시</li>
+                            <li>외부 유관기관 (소방서, 경찰)과 협조 및 정보 공유</li>
+                            <li>본부 및 상급 기관에 상황 보고</li>
+                        </ul>
+                    `
+                },
+                {
+                    title: '4. 후속 조치',
+                    content: `
+                        <ul>
+                            <li>화재 진압 완료 후 종합 상황 보고서 작성</li>
+                            <li>화재 원인 및 피해 규모 조사에 협조</li>
+                            <li>대응 활동에 대한 평가 및 개선 사항 도출</li>
+                        </ul>
+                    `
+                }
+            ],
+            '소화기': [
+                {
+                    title: '소화기 사용법',
+                    content: `
+                        <img src="https://via.placeholder.com/500x300?text=How+to+use+Fire+Extinguisher" alt="소화기 사용법 이미지" class="manual-image">
+                        <p class="manual-text">① 안전핀 뽑고 ② 노즐을 잡고 ③ 바람을 등지고 ④ 손잡이 누르기</p>
+                    `
+                }
+            ],
+            '소화전': [
+                {
+                    title: '소화전 사용법',
+                    content: `
+                        <img src="https://via.placeholder.com/500x300?text=How+to+use+Fire+Hydrant" alt="소화전 사용법 이미지" class="manual-image">
+                        <p class="manual-text">① 함 개방 후 노즐, 호스 꺼내고 ② 밸브를 돌려 물을 방출</p>
+                    `
+                }
+            ],
+            '공기호흡기': [
+                {
+                    title: '공기호흡기 사용법',
+                    content: `
+                        <div class="manual-notes">
+                            <p>※ 주의사항</p>
+                            <ol>
+                                <li>당사 공기호흡기 <strong>60분용</strong> (압력 케이지 270Bar 이상)</li>
+                                <li>잔압경고 작동 시 즉시 밖으로 <strong>탈출</strong> (오로라기 소리)</li>
+                                <li>대기호흡장치 전환 상태반드시 확인 (양압, 대기)</li>
+                                <li>면체머리끈 조절 시 고른 조임으로 기밀유지 확인</li>
+                                <li>공기호흡기 사용 후 반드시 환경안전팀으로 통보</li>
+                            </ol>
+                        </div>
+                        <img src="https://i.imgur.com/your-air-respirator-manual-image.png" alt="공기호흡기 사용법 이미지" class="manual-image">
+                        <p class="manual-text">공기호흡기 착용 및 면체 기밀 확인 절차</p>
+                    `
+                }
+            ],
+            'SVP': [
+                {
+                    title: 'SVP (Supervisory Panel) 사용법',
+                    content: `
+                        <img src="https://via.placeholder.com/500x300?text=How+to+use+SVP" alt="SVP 사용법 이미지" class="manual-image">
+                        <p class="manual-text">SVP를 통해 화재 발생 위치, 경보 상태, 소화 설비 작동 여부 등을 확인하고 제어합니다.</p>
+                        <ul>
+                            <li>경보 발생 시: 주경종 및 사이렌 정지, 화재 위치 확인</li>
+                            <li>수동 소화: 해당 구역 수동 조작 스위치 작동</li>
+                        </ul>
+                    `
+                }
+            ]
+        };
+
+        function openPopup(category) {
+            const popup = document.getElementById('mission-popup');
+            const popupContentBody = document.getElementById('popup-content-body');
+            const popupTitle = document.getElementById('popup-title');
+
+            let titleText = '';
+            if (category === '소화' || category === '구조' || category === '방호' || category === '지휘') {
+                titleText = `${category === '소화' ? '초기소화반' : category === '구조' ? '응급구조반' : category === '방호' ? '방호안전반' : '지휘통제팀'} 세부 임무`;
+            } else {
+                titleText = `${category} 매뉴얼`;
+            }
+
+            popupTitle.textContent = titleText;
+            popupContentBody.innerHTML = '';
+
+            const data = missionData[category] || [];
+
+            data.forEach(item => {
+                const accordionItem = document.createElement('div');
+                accordionItem.classList.add('accordion-item');
+
+                const accordionHeader = document.createElement('div');
+                accordionHeader.classList.add('accordion-header');
+                accordionHeader.innerHTML = `${item.title} <span>+</span>`;
+
+                const accordionContent = document.createElement('div');
+                accordionContent.classList.add('accordion-content');
+                accordionContent.innerHTML = item.content;
+
+                accordionItem.appendChild(accordionHeader);
+                accordionItem.appendChild(accordionContent);
+                popupContentBody.appendChild(accordionItem);
+
+                accordionHeader.addEventListener('click', () => {
+                    const isActive = accordionContent.classList.toggle('active');
+                    const icon = accordionHeader.querySelector('span');
+                    if (isActive) {
+                        icon.textContent = '-';
+                    } else {
+                        icon.textContent = '+';
+                    }
+                });
+            });
+
+            popup.style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('mission-popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
