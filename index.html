@@ -104,7 +104,7 @@
                 </button>
                 <div class="mt-4 text-center">
                     <p class="text-[10px] text-gray-400 dark:text-gray-600">
-                        안전환경팀 (내선 1119)<br>Ver 2.4 PC/Mobile Hybrid
+                        안전환경팀 (내선 1119)<br>Ver 2.5 PC/Mobile Hybrid
                     </p>
                 </div>
             </div>
@@ -130,10 +130,12 @@
             <div class="flex-1 p-4 md:p-0 pb-24 md:pb-0 scrollbar-hide">
                 
                 <!-- TAB 1: 내 임무 (Dashboard) -->
-                <div id="tab-dashboard" class="tab-content active space-y-5 md:space-y-6">
+                <!-- Mobile spacing reduced: space-y-3 -->
+                <div id="tab-dashboard" class="tab-content active space-y-3 md:space-y-6">
                     
                     <!-- 로고 및 타이틀 (PC only header style) -->
-                    <div class="flex justify-center md:justify-start mb-4 mt-2 md:mt-0 items-center gap-4">
+                    <!-- Mobile margin reduced: mb-2 -->
+                    <div class="flex justify-center md:justify-start mb-2 mt-2 md:mt-0 items-center gap-4">
                         <div class="bg-white/90 dark:bg-white/10 rounded-xl p-2 backdrop-blur-sm shadow-sm md:shadow-none">
                             <img src="https://raw.githubusercontent.com/hyunjiklee119-collab/whds_ert/main/whds_ert/IMAGES/WONIK.png" 
                                  alt="WONIK Logo" 
@@ -150,17 +152,20 @@
                     </div>
 
                     <!-- PC: Grid Layout for Dashboard -->
-                    <div class="grid grid-cols-1 xl:grid-cols-12 md:gap-6 gap-5">
+                    <!-- Mobile gap reduced: gap-3 -->
+                    <div class="grid grid-cols-1 xl:grid-cols-12 md:gap-6 gap-3">
                         
                         <!-- Col 1: 공통 절차 & 비상연락망 (XL: 5 cols) -->
-                        <div class="xl:col-span-5 space-y-5">
+                        <!-- Mobile spacing reduced: space-y-3 -->
+                        <div class="xl:col-span-5 space-y-3 md:space-y-5">
                             <!-- 공통 절차 -->
-                            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors h-full">
+                            <!-- Mobile padding reduced: p-4 -->
+                            <div class="bg-white dark:bg-gray-800 p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors h-full">
                                 <h2 class="text-sm font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
                                     <i data-lucide="alert-triangle" class="w-4 h-4 text-red-500"></i>
                                     화재 시 공통 대응 절차
                                 </h2>
-                                <div class="grid grid-cols-4 gap-2 text-center mb-4">
+                                <div class="grid grid-cols-4 gap-2 text-center mb-3">
                                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-2 flex flex-col items-center justify-center gap-1">
                                         <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-300 flex items-center justify-center font-bold text-sm border-2 border-white dark:border-gray-600 shadow-sm">1</div>
                                         <span class="text-[10px] font-bold text-gray-700 dark:text-gray-300">알린다</span>
@@ -206,7 +211,8 @@
                         </div>
 
                         <!-- Col 2: 내 임무 조회 & 집결지 (XL: 7 cols) -->
-                        <div class="xl:col-span-7 space-y-5">
+                        <!-- Mobile spacing reduced: space-y-3 -->
+                        <div class="xl:col-span-7 space-y-3 md:space-y-5">
                             <!-- 내 임무 조회 -->
                             <div class="bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 p-5 rounded-2xl shadow-lg text-white relative overflow-hidden min-h-[340px] flex flex-col">
                                 <div class="absolute top-0 right-0 p-4 opacity-10">
@@ -281,7 +287,7 @@
                     
                     <div class="mobile-only pt-4 pb-2 text-center">
                         <p class="text-[10px] text-gray-400 dark:text-gray-600">
-                            안전은 생명입니다. | Ver 2.4<br>문의: 안전환경팀 (내선 1119)
+                            안전은 생명입니다. | Ver 2.5<br>문의: 안전환경팀 (내선 1119)
                         </p>
                     </div>
                 </div>
