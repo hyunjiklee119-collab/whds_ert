@@ -49,7 +49,7 @@
         /* PC Desktop Layout Utilities */
         @media (min-width: 768px) {
             .mobile-only { display: none !important; }
-            .desktop-grid { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+            .desktop-grid { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
             .desktop-sidebar { display: flex; flex-direction: column; }
             .content-area { height: 100vh; overflow-y: auto; }
         }
@@ -60,8 +60,8 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-950 font-sans min-h-screen transition-colors duration-300 text-gray-800 dark:text-gray-100">
 
-    <!-- Overall Layout Container -->
-    <div class="w-full md:max-w-7xl mx-auto md:h-screen md:overflow-hidden bg-white dark:bg-gray-900 shadow-2xl relative transition-colors duration-300 desktop-grid">
+    <!-- Overall Layout Container (Full Screen on PC) -->
+    <div class="w-full md:h-screen md:overflow-hidden bg-white dark:bg-gray-900 shadow-2xl relative transition-colors duration-300 desktop-grid">
         
         <!-- [PC] Sidebar Navigation -->
         <aside class="desktop-only desktop-sidebar bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 z-20">
@@ -89,10 +89,6 @@
                         <i data-lucide="users" class="w-5 h-5"></i>
                         <span>지구대 임무</span>
                     </button>
-                    <button onclick="switchTab('supplies')" id="pc-nav-supplies" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800">
-                        <i data-lucide="package" class="w-5 h-5"></i>
-                        <span>비상물품 위치</span>
-                    </button>
                     <button onclick="switchTab('manual')" id="pc-nav-manual" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800">
                         <i data-lucide="book-open" class="w-5 h-5"></i>
                         <span>행동 매뉴얼</span>
@@ -108,14 +104,14 @@
                 </button>
                 <div class="mt-4 text-center">
                     <p class="text-[10px] text-gray-400 dark:text-gray-600">
-                        안전환경팀 (내선 1119)<br>Ver 2.0 PC/Mobile Hybrid
+                        안전환경팀 (내선 1119)<br>Ver 2.3 PC/Mobile Hybrid
                     </p>
                 </div>
             </div>
         </aside>
 
-        <!-- Main Content Area -->
-        <main class="content-area bg-gray-50 dark:bg-gray-950 md:p-8 flex flex-col relative">
+        <!-- Main Content Area (Full Width) -->
+        <main class="content-area bg-gray-50 dark:bg-gray-950 md:p-8 flex flex-col relative w-full">
             
             <!-- [Mobile] Header -->
             <header class="mobile-only bg-white dark:bg-gray-900 px-6 py-4 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center sticky top-0 z-20 transition-colors">
@@ -136,7 +132,7 @@
                 <!-- TAB 1: 내 임무 (Dashboard) -->
                 <div id="tab-dashboard" class="tab-content active space-y-5 md:space-y-6">
                     
-                    <!-- 로고 및 타이틀 (PC only header style inside content) -->
+                    <!-- 로고 및 타이틀 (PC only header style) -->
                     <div class="flex justify-center md:justify-start mb-4 mt-2 md:mt-0 items-center gap-4">
                         <div class="bg-white/90 dark:bg-white/10 rounded-xl p-2 backdrop-blur-sm shadow-sm md:shadow-none">
                             <img src="https://raw.githubusercontent.com/hyunjiklee119-collab/whds_ert/main/whds_ert/IMAGES/WONIK.png" 
@@ -154,10 +150,10 @@
                     </div>
 
                     <!-- PC: Grid Layout for Dashboard -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 md:gap-6 gap-5">
+                    <div class="grid grid-cols-1 xl:grid-cols-12 md:gap-6 gap-5">
                         
-                        <!-- Col 1: 공통 절차 & 비상연락망 (MD: 5 cols) -->
-                        <div class="md:col-span-5 space-y-5">
+                        <!-- Col 1: 공통 절차 & 비상연락망 (XL: 5 cols) -->
+                        <div class="xl:col-span-5 space-y-5">
                             <!-- 공통 절차 -->
                             <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors h-full">
                                 <h2 class="text-sm font-bold text-gray-800 dark:text-gray-100 mb-3 flex items-center gap-2">
@@ -209,8 +205,8 @@
                             </div>
                         </div>
 
-                        <!-- Col 2: 내 임무 조회 & 집결지 (MD: 7 cols) -->
-                        <div class="md:col-span-7 space-y-5">
+                        <!-- Col 2: 내 임무 조회 & 집결지 (XL: 7 cols) -->
+                        <div class="xl:col-span-7 space-y-5">
                             <!-- 내 임무 조회 -->
                             <div class="bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 p-5 rounded-2xl shadow-lg text-white relative overflow-hidden min-h-[340px] flex flex-col">
                                 <div class="absolute top-0 right-0 p-4 opacity-10">
@@ -285,29 +281,65 @@
                     
                     <div class="mobile-only pt-4 pb-2 text-center">
                         <p class="text-[10px] text-gray-400 dark:text-gray-600">
-                            안전은 생명입니다. | Ver 2.0<br>문의: 안전환경팀 (내선 1119)
+                            안전은 생명입니다. | Ver 2.3<br>문의: 안전환경팀 (내선 1119)
                         </p>
                     </div>
                 </div>
 
-                <!-- TAB 2~4: PC Grid applied -->
+                <!-- TAB 2: 본부대 임무 -->
                 <div id="tab-headquarters" class="tab-content space-y-4">
                     <div class="desktop-only mb-4"><h2 class="text-xl font-bold text-gray-800 dark:text-white">본부대 임무 현황</h2></div>
-                    <div id="hqList" class="space-y-2 md:grid md:grid-cols-2 md:gap-4 md:space-y-0"></div>
+                    <div id="hqList" class="space-y-2 md:grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 md:gap-4 md:space-y-0"></div>
                 </div>
                 
+                <!-- TAB 3: 지구대 임무 (Common Mission Moved Here) -->
                 <div id="tab-district" class="tab-content space-y-5">
-                    <div class="desktop-only mb-4"><h2 class="text-xl font-bold text-gray-800 dark:text-white">지구대(부서)별 구역</h2></div>
-                    <div id="divisionList" class="space-y-3 md:grid md:grid-cols-2 md:gap-4 md:space-y-0"></div>
+                    <div class="desktop-only mb-2"><h2 class="text-xl font-bold text-gray-800 dark:text-white">지구대(부서)별 구역</h2></div>
+                    
+                    <!-- [New Location] District Common Missions Section (In-Tab View) -->
+                    <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-100 dark:border-orange-800 rounded-xl p-4 md:p-5 shadow-sm">
+                        <h4 class="text-sm md:text-base font-bold text-orange-800 dark:text-orange-200 mb-3 flex items-center gap-2">
+                            <i data-lucide="alert-octagon" class="w-5 h-5 text-orange-600 dark:text-orange-400"></i>
+                            지구대 공통 임무 (전 부서 필독)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                            <div class="flex flex-col md:flex-row gap-3 items-start bg-white dark:bg-gray-800 p-3 rounded-lg border border-orange-100 dark:border-orange-800/30 shadow-sm h-full">
+                                <div class="bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-400 rounded-lg p-2 shrink-0">
+                                    <i data-lucide="phone-call" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-sm font-bold text-gray-900 dark:text-white mb-1">비상연락 및 전파</span>
+                                    <span class="text-xs text-gray-600 dark:text-gray-400 break-keep leading-relaxed">육성으로 "불이야" 외쳐 전파하고, 부서 내 비상연락망을 가동하여 피난을 유도합니다.</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-3 items-start bg-white dark:bg-gray-800 p-3 rounded-lg border border-orange-100 dark:border-orange-800/30 shadow-sm h-full">
+                                <div class="bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-400 rounded-lg p-2 shrink-0">
+                                    <i data-lucide="fire-extinguisher" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-sm font-bold text-gray-900 dark:text-white mb-1">초기 대응</span>
+                                    <span class="text-xs text-gray-600 dark:text-gray-400 break-keep leading-relaxed">담당 구역 내 화재 발생 시 소화기 및 옥내소화전을 활용하여 초기 진화를 시도합니다.</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-3 items-start bg-white dark:bg-gray-800 p-3 rounded-lg border border-orange-100 dark:border-orange-800/30 shadow-sm h-full">
+                                <div class="bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-400 rounded-lg p-2 shrink-0">
+                                    <i data-lucide="user-check" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-sm font-bold text-gray-900 dark:text-white mb-1">잔류자 확인</span>
+                                    <span class="text-xs text-gray-600 dark:text-gray-400 break-keep leading-relaxed">대피 시 화장실, 회의실 등 사각지대의 잔류 인원을 최종 확인하고 보고합니다.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="divisionList" class="space-y-3 md:grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 md:gap-4 md:space-y-0"></div>
                 </div>
                 
-                <div id="tab-supplies" class="tab-content space-y-4">
-                    <div id="suppliesContent"></div>
-                </div>
-                
+                <!-- TAB 4: 매뉴얼 -->
                 <div id="tab-manual" class="tab-content space-y-4">
-                    <div class="desktop-only mb-4"><h2 class="text-xl font-bold text-gray-800 dark:text-white">비상 행동 매뉴얼</h2></div>
-                    <div id="manualGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 pb-6"></div>
+                    <div class="desktop-only mb-4"><h2 class="text-xl font-bold text-gray-800 dark:text-white">비상 행동 매뉴얼 & 물품 위치</h2></div>
+                    <div id="manualGrid" class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 pb-6"></div>
                 </div>
             </div>
 
@@ -316,7 +348,6 @@
                 <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn flex flex-col items-center gap-1 transition-all text-red-600 dark:text-red-500 font-bold scale-105"><i data-lucide="shield-alert" class="w-6 h-6 fill-current"></i><span class="text-[10px]">내 임무</span></button>
                 <button onclick="switchTab('headquarters')" id="nav-headquarters" class="nav-btn flex flex-col items-center gap-1 transition-all text-gray-400 dark:text-gray-500"><i data-lucide="siren" class="w-6 h-6"></i><span class="text-[10px]">본부대</span></button>
                 <button onclick="switchTab('district')" id="nav-district" class="nav-btn flex flex-col items-center gap-1 transition-all text-gray-400 dark:text-gray-500"><i data-lucide="users" class="w-6 h-6"></i><span class="text-[10px]">지구대</span></button>
-                <button onclick="switchTab('supplies')" id="nav-supplies" class="nav-btn flex flex-col items-center gap-1 transition-all text-gray-400 dark:text-gray-500"><i data-lucide="package" class="w-6 h-6"></i><span class="text-[10px]">비상물품</span></button>
                 <button onclick="switchTab('manual')" id="nav-manual" class="nav-btn flex flex-col items-center gap-1 transition-all text-gray-400 dark:text-gray-500"><i data-lucide="book-open" class="w-6 h-6"></i><span class="text-[10px]">매뉴얼</span></button>
             </nav>
         </main>
@@ -348,9 +379,21 @@
             </div>
         </div>
 
-        <!-- Other Modals -->
+        <!-- District Modal (Simplified - Common Missions Removed) -->
         <div id="districtModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity"><div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-sm max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative modal-enter"><div class="p-6 overflow-y-auto relative"><button onclick="closeDistrictModal()" class="absolute top-4 right-4 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"><i data-lucide="x" class="w-6 h-6"></i></button><div class="mb-5"><h3 id="districtModalTitle" class="text-2xl font-bold text-gray-800 dark:text-white"></h3><p class="text-sm text-gray-500 dark:text-gray-400 mt-1">관할 구역 및 초기대응체계</p></div><div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/30 rounded-xl p-4 mb-5"><h4 class="text-sm font-bold text-blue-800 dark:text-blue-200 mb-3 flex items-center gap-2"><i data-lucide="user-cog" class="w-4 h-4"></i>초기대응 조직 편성</h4><div class="space-y-3"><div class="flex gap-3 text-sm"><span class="font-bold text-gray-700 dark:text-gray-300 min-w-[70px]">팀장</span><span class="text-gray-600 dark:text-gray-400 flex-1">비상연락, 대피인원 파악 총책</span></div><div class="flex gap-3 text-sm"><span class="font-bold text-gray-700 dark:text-gray-300 min-w-[70px]">대응조직1</span><span class="text-gray-600 dark:text-gray-400 flex-1">초기 소화 활동, 화재 확산 방지</span></div><div class="flex gap-3 text-sm"><span class="font-bold text-gray-700 dark:text-gray-300 min-w-[70px]">대응조직2</span><span class="text-gray-600 dark:text-gray-400 flex-1">상황 전파 및 재실자 피난 유도</span></div></div></div><h4 class="text-sm font-bold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2"><i data-lucide="clipboard-check" class="w-4 h-4 text-green-600 dark:text-green-400"></i>관할구역 체크리스트</h4><div id="districtModalZones" class="grid grid-cols-1 gap-2 bg-gray-50 dark:bg-gray-700 p-3 rounded-xl border border-gray-100 dark:border-gray-600"></div><div class="mt-4 text-center"><p class="text-xs text-gray-400">* 화재 발생 시 위 구역의 잔류 인원을 반드시 확인하십시오.</p></div></div></div></div>
-        <div id="manualModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity"><div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-sm max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative modal-enter"><div id="modalHeader" class="h-48 flex items-center justify-center relative shrink-0 transition-colors bg-gray-100 dark:bg-gray-700 overflow-hidden"><img id="modalRealImage" src="" alt="Manual" class="hidden w-full h-full object-cover"><div id="modalFallbackIcon" class="w-full h-full flex items-center justify-center relative"><div class="absolute inset-0 border-2 border-dashed border-white/30 pointer-events-none m-2 rounded-lg"></div><div class="bg-white/30 dark:bg-black/30 p-4 rounded-full backdrop-blur-md shadow-sm z-10"><i id="modalIcon" data-lucide="flame" class="w-12 h-12 text-gray-700 dark:text-gray-200"></i></div></div><button onclick="closeModal()" class="absolute top-3 right-3 bg-black/20 hover:bg-black/30 text-white rounded-full p-1.5 transition-colors z-20"><i data-lucide="x" class="w-5 h-5"></i></button></div><div class="p-6 overflow-y-auto bg-white dark:bg-gray-800"><h3 id="modalTitle" class="text-xl font-bold text-gray-800 dark:text-white mb-1"></h3><span id="modalCategory" class="inline-block px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 text-xs rounded-md mb-4 font-medium"></span><div class="space-y-4"><h4 class="text-sm font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2 border-b dark:border-gray-700 pb-2"><i data-lucide="check-square" class="w-4 h-4 text-green-600 dark:text-green-400"></i>행동 절차</h4><ol id="modalSteps" class="space-y-3"></ol></div><div class="mt-6 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg flex gap-3 items-start"><i data-lucide="shield-alert" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i><p class="text-xs text-red-600 dark:text-red-300 leading-snug">본 매뉴얼은 비상 시 참고용입니다. 실제 상황에서는 현장 지휘자의 통제에 따라 안전하게 행동하십시오.</p></div></div></div></div>
+        
+        <!-- Manual Modal (Updated for Custom Content Support) -->
+        <div id="manualModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity"><div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-sm max-h-[85vh] overflow-hidden shadow-2xl flex flex-col relative modal-enter"><div id="modalHeader" class="h-48 flex items-center justify-center relative shrink-0 transition-colors bg-gray-100 dark:bg-gray-700 overflow-hidden"><img id="modalRealImage" src="" alt="Manual" class="hidden w-full h-full object-cover"><div id="modalFallbackIcon" class="w-full h-full flex items-center justify-center relative"><div class="absolute inset-0 border-2 border-dashed border-white/30 pointer-events-none m-2 rounded-lg"></div><div class="bg-white/30 dark:bg-black/30 p-4 rounded-full backdrop-blur-md shadow-sm z-10"><i id="modalIcon" data-lucide="flame" class="w-12 h-12 text-gray-700 dark:text-gray-200"></i></div></div><button onclick="closeModal()" class="absolute top-3 right-3 bg-black/20 hover:bg-black/30 text-white rounded-full p-1.5 transition-colors z-20"><i data-lucide="x" class="w-5 h-5"></i></button></div><div class="p-6 overflow-y-auto bg-white dark:bg-gray-800"><h3 id="modalTitle" class="text-xl font-bold text-gray-800 dark:text-white mb-1"></h3><span id="modalCategory" class="inline-block px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 text-xs rounded-md mb-4 font-medium"></span>
+            <div id="modalContentContainer" class="space-y-4">
+                <!-- Standard Steps Container -->
+                <div id="standardStepsContainer">
+                    <h4 class="text-sm font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2 border-b dark:border-gray-700 pb-2"><i data-lucide="check-square" class="w-4 h-4 text-green-600 dark:text-green-400"></i>행동 절차</h4>
+                    <ol id="modalSteps" class="space-y-3 mt-3"></ol>
+                </div>
+                <!-- Custom Content Container (For Supplies, etc.) -->
+                <div id="customContentContainer" class="hidden"></div>
+            </div>
+            <div class="mt-6 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg flex gap-3 items-start"><i data-lucide="shield-alert" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i><p class="text-xs text-red-600 dark:text-red-300 leading-snug">본 매뉴얼은 비상 시 참고용입니다. 실제 상황에서는 현장 지휘자의 통제에 따라 안전하게 행동하십시오.</p></div></div></div></div>
         
         <div id="toast-container" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 flex flex-col items-center gap-2 w-full px-4 pointer-events-none"></div>
 
@@ -383,6 +426,8 @@
             { divName: "직속", teams: [{ name: "구매팀", zones: ["(3층) 구매창고", "(1층) 자재창고", "(1층) 소모품창고", "(1층) 출하장"] }, { name: "연구소", zones: ["(지하) 연구소", "(지하) ENC창고", "(지하) 미화휴게실", "(지하) 일반창고"] }] }
         ];
         const safetyManualData = [ 
+            // Added Supplies Location as the first item
+            { id: 'supplies_location', title: '0. 비상물품 위치', category: '물품위치', icon: 'package-search', iconColor: 'text-blue-600 dark:text-blue-400', imageColor: 'bg-blue-100 dark:bg-blue-900/50', image: '', steps: [], isCustom: true },
             { id: 'extinguisher', title: '1. 소화기 사용요령', category: '초기소화', icon: 'flame', iconColor: 'text-red-500', imageColor: 'bg-red-100 dark:bg-red-900/50', image: '', steps: ["소화기를 불이 난 곳으로 옮깁니다.", "손잡이 부분의 안전핀을 힘껏 뽑습니다.", "바람을 등지고 호스를 불쪽으로 향하게 잡습니다.", "손잡이를 힘껏 움켜쥐고 빗자루 쓸듯이 골고루 분사합니다."] },
             { id: 'hydrant', title: '2. 옥내소화전 사용요령', category: '초기소화', icon: 'flame', iconColor: 'text-red-500', imageColor: 'bg-red-100 dark:bg-red-900/50', image: '', steps: ["화재 발생 알림 및 소화전 함을 개방합니다.", "호스를 꺼내어 화재 지점까지 전개합니다. (호스 꼬임 주의)", "소화전 함 내부의 개폐 밸브를 왼쪽(반시계)으로 돌려 개방합니다.", "노즐(관창)을 잡고 왼쪽으로 돌려 물을 분사하여 진압합니다. (2인 1조 권장)"] },
             { id: 'manual_sys', title: '3. 소화설비 수동조작', category: '설비', icon: 'wrench', iconColor: 'text-gray-600 dark:text-gray-400', imageColor: 'bg-gray-100 dark:bg-gray-700', image: '', steps: ["[스프링클러] 화재 구역의 슈퍼비조리 판넬(SVP)로 이동하여 '수동 기동' 버튼을 누릅니다.", "[가스계소화] 방호구역 출입구 인근 수동조작함 커버를 열고 기동 버튼을 누릅니다.", "수동 조작 후 즉시 방재실에 사실을 통보합니다.", "가스계 설비의 경우 방출 표시등이 점등되면 절대 진입하지 않습니다."] },
@@ -399,7 +444,6 @@
             initTheme(); 
             renderHeadquarters();
             renderDistrict();
-            renderSupplies(); 
             renderManualGrid();
             lucide.createIcons();
             
@@ -635,6 +679,7 @@
             lucide.createIcons();
         }
         function closeRosterModal() { document.getElementById('rosterModal').classList.add('hidden'); }
+        
         function openDistrictModal(divName, teamName, dIdx, tIdx) {
             const team = divisionData[dIdx].teams[tIdx];
             document.getElementById('districtModal').classList.remove('hidden');
@@ -642,19 +687,59 @@
             document.getElementById('districtModalZones').innerHTML = team.zones.map(zone => `<label class="flex items-start gap-2 p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded hover:bg-blue-50 dark:hover:bg-blue-900/30 cursor-pointer transition-colors"><input type="checkbox" class="mt-0.5 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-500"><span class="text-xs text-gray-600 dark:text-gray-300 font-medium leading-tight">${zone}</span></label>`).join('');
             lucide.createIcons();
         }
+
         function closeDistrictModal() { document.getElementById('districtModal').classList.add('hidden'); }
+        
+        // --- Updated openModal for Custom Content (Supplies Location) ---
         function openModal(idx) {
             const item = safetyManualData[idx];
             document.getElementById('manualModal').classList.remove('hidden');
             document.getElementById('modalTitle').textContent = item.title;
             document.getElementById('modalCategory').textContent = item.category;
+            
             const realImg = document.getElementById('modalRealImage');
             const fallbackIcon = document.getElementById('modalFallbackIcon');
-            if (item.image) { realImg.src = item.image; realImg.classList.remove('hidden'); fallbackIcon.classList.add('hidden'); } 
-            else { realImg.classList.add('hidden'); fallbackIcon.classList.remove('hidden'); }
-            document.getElementById('modalSteps').innerHTML = item.steps.map((step, i) => `<li class="flex gap-3 text-sm text-gray-700 dark:text-gray-300"><span class="flex-shrink-0 w-6 h-6 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full flex items-center justify-center font-bold text-xs">${i + 1}</span><span class="leading-relaxed">${step}</span></li>`).join('');
+            const iconEl = document.getElementById('modalIcon');
+            
+            // Image handling
+            if (item.image) { 
+                realImg.src = item.image; 
+                realImg.classList.remove('hidden'); 
+                fallbackIcon.classList.add('hidden'); 
+            } else { 
+                realImg.classList.add('hidden'); 
+                fallbackIcon.classList.remove('hidden');
+                // Update fallback icon
+                iconEl.setAttribute('data-lucide', item.icon);
+                // Simple color logic for icon
+                if(item.id === 'supplies_location') {
+                    iconEl.className = "w-12 h-12 text-blue-600 dark:text-blue-400";
+                } else {
+                    iconEl.className = "w-12 h-12 text-gray-700 dark:text-gray-200";
+                }
+            }
+
+            // Custom Content Handling
+            const standardContainer = document.getElementById('standardStepsContainer');
+            const customContainer = document.getElementById('customContentContainer');
+
+            if (item.isCustom && item.id === 'supplies_location') {
+                standardContainer.classList.add('hidden');
+                customContainer.classList.remove('hidden');
+                customContainer.innerHTML = getSuppliesHTML();
+            } else {
+                standardContainer.classList.remove('hidden');
+                customContainer.classList.add('hidden');
+                document.getElementById('modalSteps').innerHTML = item.steps.map((step, i) => `<li class="flex gap-3 text-sm text-gray-700 dark:text-gray-300"><span class="flex-shrink-0 w-6 h-6 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full flex items-center justify-center font-bold text-xs">${i + 1}</span><span class="leading-relaxed">${step}</span></li>`).join('');
+            }
             lucide.createIcons();
         }
+
+        // Helper to generate Supplies HTML (moved from renderSupplies)
+        function getSuppliesHTML() {
+            return `<div class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-800 dark:to-indigo-800 p-5 rounded-2xl shadow-lg text-white relative overflow-hidden transition-colors mb-4"><div class="relative z-10"><h2 class="text-lg font-bold flex items-center gap-2"><i data-lucide="package" class="w-5 h-5 text-white"></i>비상 물품 위치</h2><p class="text-xs text-blue-100 mt-1 opacity-90 leading-snug">생명 구조를 위한 장비 위치입니다.<br>평상시 위치를 파악해 두세요.</p></div><i data-lucide="package-search" class="absolute -bottom-4 -right-4 w-20 h-20 text-white opacity-10 rotate-12"></i></div><div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl border border-gray-100 dark:border-gray-600 shadow-sm transition-colors"><h3 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>물품별 상세 위치</h3><div class="space-y-2 text-sm"><div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-600 pb-2"><span class="text-gray-600 dark:text-gray-300 flex items-center gap-1.5 shrink-0"><i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-red-500"></i> AED</span><span class="font-medium text-gray-800 dark:text-white text-right break-keep text-xs">1층 로비, 1층 GATE2, 3층 EV홀</span></div><div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-600 pb-2"><span class="text-gray-600 dark:text-gray-300 flex items-center gap-1.5 shrink-0"><i data-lucide="wind" class="w-3.5 h-3.5 text-blue-500"></i> 공기호흡기</span><span class="font-medium text-gray-800 dark:text-white text-right break-keep text-xs">1층 로비(2개), 지주 입구(2개)</span></div><div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-600 pb-2"><span class="text-gray-600 dark:text-gray-300 flex items-center gap-1.5 shrink-0"><i data-lucide="plus-square" class="w-3.5 h-3.5 text-green-500"></i> 구조용 들것</span><span class="font-medium text-gray-800 dark:text-white text-right break-keep text-xs">1층 로비, 지하보호구함, 보건실</span></div><div class="flex justify-between items-center pt-2"><span class="text-gray-600 dark:text-gray-300 flex items-center gap-1.5 shrink-0"><i data-lucide="layers" class="w-3.5 h-3.5 text-orange-500"></i> 질식소화덮개</span><span class="font-medium text-gray-800 dark:text-white text-right break-keep text-xs">지하 주차장 입구 보관함</span></div></div></div>`;
+        }
+
         function closeModal() { document.getElementById('manualModal').classList.add('hidden'); }
         function showToast(message) {
             const container = document.getElementById('toast-container');
@@ -663,10 +748,10 @@
             toast.innerHTML = `<i data-lucide="info" class="w-4 h-4 text-yellow-400"></i><span>${message}</span>`;
             container.appendChild(toast);
             lucide.createIcons();
-            setTimeout(() => { toast.classList.remove('toast-enter'); toast.classList.add('toast-exit'); setTimeout(() => { toast.remove(); }, 300); }, 3000);
+            setTimeout(() => { toast.classList.remove('toast-enter'); toast.classList.add('toast-exit'); setTimeout(() => { toast.remove(); }, 3000); }, 3000);
         }
         
-        // Updated switchTab to handle both Mobile and PC Navigation
+        // Updated switchTab to handle both Mobile and PC Navigation (Removed supplies logic)
         function switchTab(tabId) {
             // Hide all contents
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -684,8 +769,7 @@
             if(activeMobileBtn) {
                 activeMobileBtn.classList.remove('text-gray-400');
                 if (tabId === 'manual') { activeMobileBtn.classList.add('text-green-600', 'dark:text-green-500', 'font-bold', 'scale-105'); } 
-                else { if (tabId === 'supplies') { activeMobileBtn.classList.add('text-blue-600', 'dark:text-blue-400', 'font-bold', 'scale-105'); } 
-                else { activeMobileBtn.classList.add('text-red-600', 'dark:text-red-500', 'font-bold', 'scale-105'); } }
+                else { activeMobileBtn.classList.add('text-red-600', 'dark:text-red-500', 'font-bold', 'scale-105'); }
                 const activeIcon = activeMobileBtn.querySelector('svg');
                 if(activeIcon) activeIcon.classList.add('fill-current');
             }
@@ -701,13 +785,9 @@
             }
         }
         
-        function renderSupplies() {
-            const html = `<div class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-800 dark:to-indigo-800 p-6 rounded-2xl shadow-lg text-white relative overflow-hidden transition-colors"><div class="relative z-10"><h2 class="text-xl font-bold flex items-center gap-2"><i data-lucide="package" class="w-6 h-6 text-white"></i>비상 물품 위치</h2><p class="text-sm text-blue-100 mt-2 opacity-90 leading-snug">생명 구조를 위한 장비 위치입니다.<br>평상시 위치를 파악해 두세요.</p></div><i data-lucide="package-search" class="absolute -bottom-4 -right-4 w-24 h-24 text-white opacity-10 rotate-12"></i></div><div class="bg-white dark:bg-gray-800 p-4 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors"><h3 class="text-sm font-bold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2"><i data-lucide="package-search" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>물품별 상세 위치</h3><div class="space-y-2 text-sm"><div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2"><span class="text-gray-600 dark:text-gray-400 flex items-center gap-1.5 shrink-0"><i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-red-500"></i> AED</span><span class="font-medium text-gray-800 dark:text-gray-200 text-right break-keep">1층 로비, 1층 GATE2 측, 3층 EV홀</span></div><div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2"><span class="text-gray-600 dark:text-gray-400 flex items-center gap-1.5 shrink-0"><i data-lucide="wind" class="w-3.5 h-3.5 text-blue-500"></i> 공기호흡기</span><span class="font-medium text-gray-800 dark:text-gray-200 text-right break-keep">1층 로비(60분 2개), 지주 입구(30분 2개)</span></div><div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-700 pb-2"><span class="text-gray-600 dark:text-gray-400 flex items-center gap-1.5 shrink-0"><i data-lucide="plus-square" class="w-3.5 h-3.5 text-green-500"></i> 구조용 들것</span><span class="font-medium text-gray-800 dark:text-gray-200 text-right break-keep">1층 로비, 지하 보호구함, 1층 보건실</span></div><div class="flex justify-between items-center pt-2"><span class="text-gray-600 dark:text-gray-400 flex items-center gap-1.5 shrink-0"><i data-lucide="layers" class="w-3.5 h-3.5 text-orange-500"></i> 질식소화덮개</span><span class="font-medium text-gray-800 dark:text-gray-200 text-right break-keep">지하 주차장 입구 보관함</span></div></div></div>`;
-            document.getElementById('suppliesContent').innerHTML = html;
-        }
         function renderHeadquarters() { 
             const container = document.getElementById('hqList');
-            container.innerHTML = headquartersMissions.map(team => `<div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm transition-colors"><button onclick="toggleAccordion('hq-${team.id}')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"><div class="flex items-center gap-3"><div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-lg"><i data-lucide="${team.icon}" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i></div><span class="font-bold text-gray-800 dark:text-white">${team.teamName}</span></div><i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 dark:text-gray-500 transition-transform" id="icon-hq-${team.id}"></i></button><div id="hq-${team.id}" class="hidden p-4 bg-gray-50 dark:bg-gray-750 border-t border-gray-100 dark:border-gray-700 text-sm space-y-4"><div class="space-y-3 border-b border-gray-200 dark:border-gray-600 pb-4"><h4 class="font-bold text-gray-900 dark:text-gray-200 text-xs flex items-center gap-1"><i data-lucide="layers" class="w-3 h-3"></i> 조직 공통 임무</h4><div class="grid grid-cols-[80px_1fr] gap-2 items-start"><span class="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded text-xs font-bold text-center">상황접수</span><span class="text-gray-700 dark:text-gray-300">${team.commonTasks.reception}</span></div><div class="grid grid-cols-[80px_1fr] gap-2 items-start"><span class="bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 px-2 py-0.5 rounded text-xs font-bold text-center">초기대응</span><span class="text-gray-700 dark:text-gray-300 font-medium">${team.commonTasks.initial}</span></div></div><div class="space-y-2"><h4 class="font-bold text-gray-900 dark:text-gray-200 text-xs flex items-center gap-1"><i data-lucide="user" class="w-3 h-3"></i> 구성원별 세부 임무</h4>${team.members.map((member, mIdx) => `<div class="border border-gray-100 dark:border-gray-600 rounded-lg overflow-hidden"><button onclick="toggleAccordion('hq-mem-${team.id}-${mIdx}')" class="w-full flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-left"><span class="text-sm font-bold text-gray-700 dark:text-gray-200">· ${member.role}</span><i data-lucide="chevron-down" class="w-3 h-3 text-gray-500 dark:text-gray-400 transition-transform" id="icon-hq-mem-${team.id}-${mIdx}"></i></button><div id="hq-mem-${team.id}-${mIdx}" class="hidden p-3 bg-white dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-300 space-y-2"><div class="flex gap-2"><span class="min-w-[40px] font-bold text-blue-600 dark:text-blue-400">접수</span><span>${member.duties.reception}</span></div><div class="flex gap-2"><span class="min-w-[40px] font-bold text-red-600 dark:text-red-400">초기</span><span>${member.duties.initial}</span></div></div></div>`).join('')}</div></div></div>`).join('');
+            container.innerHTML = headquartersMissions.map(team => `<div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm transition-colors"><button onclick="toggleAccordion('hq-${team.id}')" class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"><div class="flex items-center gap-3"><div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-lg"><i data-lucide="${team.icon}" class="w-5 h-5 text-gray-700 dark:text-gray-300"></i></div><span class="font-bold text-gray-800 dark:text-white">${team.teamName}</span></div><i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 dark:text-gray-500 transition-transform" id="icon-hq-${team.id}"></i></button><div id="hq-${team.id}" class="hidden p-4 bg-gray-50 dark:bg-gray-750 border-t border-gray-100 dark:border-gray-700 text-sm space-y-4"><div class="space-y-3 border-b border-gray-200 dark:border-gray-600 pb-4"><h4 class="font-bold text-gray-900 dark:text-gray-200 text-xs flex items-center gap-1"><i data-lucide="layers" class="w-3 h-3"></i> 조직 공통 임무</h4><div class="grid grid-cols-[80px_1fr] gap-2 items-start"><span class="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded text-xs font-bold text-center">상황접수</span><span class="text-gray-700 dark:text-gray-300">${team.commonTasks.reception}</span></div><div class="grid grid-cols-[80px_1fr] gap-2 items-start"><span class="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-2 py-0.5 rounded text-xs font-bold text-center">비상소집</span><span class="text-gray-700 dark:text-gray-300">${team.commonTasks.assembly}</span></div><div class="grid grid-cols-[80px_1fr] gap-2 items-start"><span class="bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 px-2 py-0.5 rounded text-xs font-bold text-center">초기대응</span><span class="text-gray-700 dark:text-gray-300 font-medium">${team.commonTasks.initial}</span></div><div class="grid grid-cols-[80px_1fr] gap-2 items-start"><span class="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-2 py-0.5 rounded text-xs font-bold text-center">후속조치</span><span class="text-gray-700 dark:text-gray-300">${team.commonTasks.followup}</span></div></div><div class="space-y-2"><h4 class="font-bold text-gray-900 dark:text-gray-200 text-xs flex items-center gap-1"><i data-lucide="user" class="w-3 h-3"></i> 구성원별 세부 임무</h4>${team.members.map((member, mIdx) => `<div class="border border-gray-100 dark:border-gray-600 rounded-lg overflow-hidden"><button onclick="toggleAccordion('hq-mem-${team.id}-${mIdx}')" class="w-full flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-left"><span class="text-sm font-bold text-gray-700 dark:text-gray-200">· ${member.role}</span><i data-lucide="chevron-down" class="w-3 h-3 text-gray-500 dark:text-gray-400 transition-transform" id="icon-hq-mem-${team.id}-${mIdx}"></i></button><div id="hq-mem-${team.id}-${mIdx}" class="hidden p-3 bg-white dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-300 space-y-2"><div class="flex gap-2"><span class="min-w-[40px] font-bold text-blue-600 dark:text-blue-400">접수</span><span>${member.duties.reception}</span></div><div class="flex gap-2"><span class="min-w-[40px] font-bold text-purple-600 dark:text-purple-400">소집</span><span>${member.duties.assembly}</span></div><div class="flex gap-2"><span class="min-w-[40px] font-bold text-red-600 dark:text-red-400">초기</span><span>${member.duties.initial}</span></div><div class="flex gap-2"><span class="min-w-[40px] font-bold text-green-600 dark:text-green-400">후속</span><span>${member.duties.followup}</span></div></div></div>`).join('')}</div></div></div>`).join('');
         }
         function renderDistrict() { 
             const container = document.getElementById('divisionList');
